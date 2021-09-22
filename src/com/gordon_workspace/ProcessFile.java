@@ -5,54 +5,42 @@ import java.util.*;
 
 
 public class ProcessFile {
-    private TreeMap<String, Integer> mapHolder = null;
-    private String file;
-
-    public TreeMap<String, Integer> getMapHolder() {
-        return mapHolder;
-    }
-
-    public void setMapHolder(TreeMap<String, Integer> mapHolder) {
-        this.mapHolder = mapHolder;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
+    private final Map<String, Integer> wordHolder = new HashMap<>();
+    private final String file;
 
     public ProcessFile(String file) {
         this.file = file;
-        mapHolder = new TreeMap<>();
     }
 
-    public void readWords()  {
 
+    public void readWords() {
         try {
-            Scanner s = new Scanner(new File(file));
-            while (s.hasNext()) {
-                String word = s.next();
-                int wordCount = 1;
-                if (mapHolder.containsKey(word)) {
-                    wordCount = mapHolder.get(word) + 1;
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String pointer = null;
+            while ((pointer = bufferedReader.readLine()) != null){
+                String[] words = pointer.toLowerCase().split("[\\s.;,?:!/\"]+");
+                for (String word : words) {
+                    word = word.trim();
+                        if(wordHolder.containsKey(word)) {
+                            wordHolder.put(word, wordHolder.get(word) + 1);
+                        } else {
+                            wordHolder.put(word, 1);
+                        }
+
                 }
-                mapHolder.put(word,wordCount);
             }
-            s.close();
-        } catch (FileNotFoundException e) {
+            bufferedReader.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
-    public TreeMap<String, Integer> getFileResults() {
-        if (mapHolder.isEmpty()) {
+    public Map<String, Integer> getFileResults() {
+        if (wordHolder.isEmpty()) {
             readWords();
         }
-        return mapHolder;
+        return wordHolder;
     }
 
 }
