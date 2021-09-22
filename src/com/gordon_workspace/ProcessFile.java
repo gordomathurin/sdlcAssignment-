@@ -16,19 +16,13 @@ public class ProcessFile {
     public void readWords() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            String pointer = null;
-            while ((pointer = bufferedReader.readLine()) != null){
-                String[] words = pointer.toLowerCase().split("[\\s.;,?:!/\"]+");
-                for (String word : words) {
-                    word = word.trim();
-                        if(wordHolder.containsKey(word)) {
-                            wordHolder.put(word, wordHolder.get(word) + 1);
-                        } else {
-                            wordHolder.put(word, 1);
-                        }
-
+            bufferedReader.lines().map(pointer -> pointer.replaceAll("[^a-zA-Z]", " ").toLowerCase().split("\\s+")).flatMap(Arrays::stream).map(String::trim).forEach(word -> {
+                if (wordHolder.containsKey(word)) {
+                    wordHolder.put(word, wordHolder.get(word) + 1);
+                } else {
+                    wordHolder.put(word, 1);
                 }
-            }
+            });
             bufferedReader.close();
         } catch (IOException e) {
             e.printStackTrace();
