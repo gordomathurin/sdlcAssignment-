@@ -1,7 +1,26 @@
 package com.gordon_workspace;
 
-import java.io.*;
-import java.util.*;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ProcessFile {
@@ -16,7 +35,7 @@ public class ProcessFile {
     public void readWords() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            bufferedReader.lines().map(pointer -> pointer.replaceAll("[^a-zA-Z]", " ").toLowerCase().split("\\s+")).flatMap(Arrays::stream).map(String::trim).forEach(word -> {
+            bufferedReader.lines().map(pointer -> pointer.replaceAll("[^a-zA-Z0-9]", " ").toLowerCase().replaceAll("^ +| +$|( )+", "$1").split("\\s+")).flatMap(Arrays::stream).map(String::trim).forEach(word -> {
                 if (wordHolder.containsKey(word)) {
                     wordHolder.put(word, wordHolder.get(word) + 1);
                 } else {
@@ -37,4 +56,5 @@ public class ProcessFile {
         return wordHolder;
     }
 
-}
+    }
+
