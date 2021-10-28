@@ -53,6 +53,9 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         button.setLayoutY(480);
         button.setOnAction(this);
 
+//        ListView<String> listView = new ListView<>();
+//        listView.getItems().addAll();
+
 
         Group root = new Group(text, button, imageView);
         Scene scene = new Scene(root, 600, 600);
@@ -78,6 +81,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
             for (Map.Entry<String, Integer> entry : sortedHolder.entrySet()) {
                 System.out.println(entry.getKey() + " ----> " + entry.getValue());
             }
+
     }
 }
 
