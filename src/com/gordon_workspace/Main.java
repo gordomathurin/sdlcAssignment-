@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Comparator;
@@ -53,8 +54,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         button.setLayoutY(480);
         button.setOnAction(this);
 
-//        ListView<String> listView = new ListView<>();
-//        listView.getItems().addAll();
+
 
 
         Group root = new Group(text, button, imageView);
