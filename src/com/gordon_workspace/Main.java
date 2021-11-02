@@ -54,9 +54,6 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         button.setLayoutY(480);
         button.setOnAction(this);
 
-
-
-
         Group root = new Group(text, button, imageView);
         Scene scene = new Scene(root, 600, 600);
 
