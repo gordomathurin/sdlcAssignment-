@@ -20,7 +20,7 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Main extends Application implements EventHandler<ActionEvent> {
+public class Main extends Application implements EventHandler<ActionEvent>, ProjectVariables {
 
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -40,8 +40,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         text.setStroke(Color.DARKSLATEBLUE);
         text.getLineSpacing();
 
-        String imagePath = "/Users/gordonm/Documents/Gordon B.A.S Journey/CEN3024C(softwareDevelopment1) FALL2021/module2 intelij/image1.jpg";
-        Image image = new Image(new FileInputStream(imagePath));
+        Image image = new Image(new FileInputStream(imageFilePath));
         ImageView imageView = new ImageView(image);
         imageView.setX(150);
         imageView.setY(100);
@@ -67,8 +66,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-            String testFile = "/Users/gordonm/Documents/Gordon B.A.S Journey/CEN3024C(softwareDevelopment1) FALL2021/module2 intelij/src/input.txt";
-            ProcessFile processFile = new ProcessFile(testFile);
+            ProcessFile processFile = new ProcessFile(poemFilePath);
             Map<String, Integer> wordHolder = processFile.getFileResults();
             LinkedHashMap<String, Integer> sortedHolder = new LinkedHashMap<>();
             wordHolder.entrySet().stream().sorted(Map.Entry.comparingByValue(
