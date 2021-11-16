@@ -7,7 +7,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/***
+ * @author Gordon Mathurin
+ */
 public class ProcessFile {
     private final Map<String, Integer> wordHolder = new HashMap<>();
     private final String file;
