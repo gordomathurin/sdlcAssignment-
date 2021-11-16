@@ -64,6 +64,9 @@ public class Main extends Application implements EventHandler<ActionEvent>, Proj
 
     }
 
+    /***
+     * JavaFX button action event to start file reading process
+     */
     @Override
     public void handle(ActionEvent actionEvent) {
             ProcessFile processFile = new ProcessFile(poemFilePath);
