@@ -16,11 +16,16 @@ public class ProcessFile {
         this.file = file;
     }
 
-
+    /***
+     * Function process file with poem and place them in wordHolder (hashMap)
+     */
     public void readWords() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            bufferedReader.lines().map(pointer -> pointer.replaceAll("[^a-zA-Z0-9]", " ").toLowerCase().replaceAll("^ +| +$|( )+", "$1").split("\\s+")).flatMap(Arrays::stream).map(String::trim).forEach(word -> {
+            bufferedReader.lines().map(pointer -> pointer.replaceAll("[^a-zA-Z0-9]", " ").toLowerCase().replaceAll("^ +| +$|( )+", "$1").
+                    split("\\s+")).
+                    flatMap(Arrays::stream).
+                    map(String::trim).forEach(word -> {
                 if (wordHolder.containsKey(word)) {
                     wordHolder.put(word, wordHolder.get(word) + 1);
                 } else {
@@ -34,6 +39,10 @@ public class ProcessFile {
 
     }
 
+    /***
+     *
+     * @return wordHolder (HashMap map of words Key is word value is word Occurrence count)
+     */
     public Map<String, Integer> getFileResults() {
         if (wordHolder.isEmpty()) {
             readWords();
